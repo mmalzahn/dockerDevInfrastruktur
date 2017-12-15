@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  regproxy:
+    image: registry:2
+    ports:
+     - "5005:5000"
+    restart: always
+    volumes:
+     - /DockerVolumes/regData:/var/lib/registry
+    environment:
+     - REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io
+    networks:
+      - infraNet
+
+networks:
+  infraNet:
