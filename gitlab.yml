@@ -1,0 +1,22 @@
+version: "2.2"
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:nightly
+    ports:
+     - "8180:80"
+     - "60443:443"
+     - "2322:22"
+#    restart: no
+    extra_hosts:
+     - "regintern:192.168.99.100"
+     - "gitlab.mm.kim:192.168.99.100"
+    volumes:
+     - /DockerVolumes/gitlab1/config:/etc/gitlab
+     - /DockerVolumes/gitlab1/logs:/var/log/gitlab
+     - /DockerVolumes/gitlab1/data:/var/opt/gitlab
+     - /DockerVolumes/gitlab1/lfs-objects:/mnt/storage/lfs-objects
+     - /DockerVolumes/gitlab1/artifacts:/mnt/storage/artifacts
+    networks:
+      - infraNet
+networks:
+  infraNet:
